@@ -1,17 +1,23 @@
-import { PlasmicComponent } from '@plasmicapp/loader-nextjs';
-import { notFound } from 'next/navigation';
-import { PLASMIC } from '../../plasmic-init';
-import { PlasmicClientRootProvider } from '../../plasmic-init-client';
+import { PlasmicComponent } from "@plasmicapp/loader-nextjs";
+import { notFound } from "next/navigation";
+import { PLASMIC } from "@/plasmic-init";
+import { PlasmicClientRootProvider } from "@/plasmic-init-client";
 
 // Use revalidate if you want incremental static regeneration
-export const revalidate = 60;
+export const dynamic = "force-static";
+export const revalidate = false; // 3600 = 1 hour
 
 export default async function PlasmicLoaderPage({
   params,
+  searchParams,
 }: {
-  params?: { catchall: string[] | undefined };
+  params?: Promise<{ catchall: string[] | undefined }>;
+  searchParams?: Promise<Record<string, string | string[]>>;
 }) {
-  const plasmicComponentData = await fetchPlasmicComponentData(params?.catchall);
+  const catchall = (await params)?.catchall;
+  const plasmicComponentData = await fetchPlasmicComponentData(
+    catchall,
+  );
   if (!plasmicComponentData) {
     notFound();
   }
@@ -23,14 +29,18 @@ export default async function PlasmicLoaderPage({
 
   const pageMeta = prefetchedData.entryCompMetas[0];
   return (
-    <PlasmicClientRootProvider prefetchedData={prefetchedData} pageParams={pageMeta.params} >
+    <PlasmicClientRootProvider
+      prefetchedData={prefetchedData}
+      pageParams={pageMeta.params}
+      pageQuery={await searchParams}
+    >
       <PlasmicComponent component={pageMeta.displayName} />
     </PlasmicClientRootProvider>
   );
 }
 
 async function fetchPlasmicComponentData(catchall: string[] | undefined) {
-  const plasmicPath = '/' + (catchall ? catchall.join('/') : '');
+  const plasmicPath = "/" + (catchall ? catchall.join("/") : "");
   const prefetchedData = await PLASMIC.maybeFetchComponentData(plasmicPath);
   if (!prefetchedData) {
     notFound();
@@ -42,9 +52,10 @@ async function fetchPlasmicComponentData(catchall: string[] | undefined) {
 export async function generateStaticParams() {
   const pageModules = await PLASMIC.fetchPages();
   return pageModules.map((mod) => {
-    const catchall = mod.path === '/' ? undefined : mod.path.substring(1).split('/');
+    const catchall =
+      mod.path === "/" ? undefined : mod.path.substring(1).split("/");
     return {
-      catchall
+      catchall,
     };
   });
 }
