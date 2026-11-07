@@ -1,29 +1,41 @@
-# Next.js Static Export
+# rysc.capital
 
-Next.js enables starting as a static site or Single-Page Application (SPA), then later optionally upgrading to use features that require a server.
+The website for [rysc.capital](https://www.rysc.capital), built with [Next.js](https://nextjs.org) (App Router) and React, and exported as a static site.
 
-When running `next build`, Next.js generates an HTML file per route. By breaking a strict SPA into individual HTML files, Next.js can avoid loading unnecessary JavaScript code on the client-side, reducing the bundle size and enabling faster page loads.
-
-Learn more: https://nextjs.org/docs/app/building-your-application/deploying/static-exports
-
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-static-export)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-static-export)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+## Getting started
 
 ```bash
-npx create-next-app --example with-static-export with-static-export-app
+pnpm install
+pnpm dev        # start the dev server at http://localhost:3000
+pnpm build      # static export to ./out
+pnpm start      # build and serve ./out
+pnpm typecheck  # type-check the project
 ```
 
-```bash
-yarn create next-app --example with-static-export with-static-export-app
+Copy `.env.local.example` to `.env.local` and set `NEXT_PUBLIC_GOOGLE_ANALYTICS_KEY` to enable Google Analytics.
+
+## Project structure
+
+```
+app/
+  layout.tsx            Root layout: fonts, metadata, analytics, header + footer
+  globals.css           Design tokens and base element styles
+  page.tsx              Home
+  about/                About
+  team/                 Team
+  join/                 Join
+  portfolio/            Portfolio index and category pages
+components/             Shared UI components (each with a CSS module)
+public/images/          Site imagery and portfolio logos
 ```
 
-```bash
-pnpm create next-app --example with-static-export with-static-export-app
-```
+Styling uses CSS Modules. The layout has a single responsive breakpoint at
+`max-width: 1400px`, below which the header, footer and content sections stack
+vertically.
+
+### Editing content
+
+- Portfolio companies live in `app/portfolio/startups/page.tsx` and
+  `app/portfolio/crypto/page.tsx` as plain arrays.
+- Navigation links live in `components/SiteHeader.tsx` and
+  `components/SiteFooter.tsx`.

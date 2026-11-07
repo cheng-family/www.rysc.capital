@@ -1,0 +1,82 @@
+.footer {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: stretch;
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 64px;
+}
+
+.inner {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: space-between;
+  align-self: center;
+  width: 100%;
+  max-width: 1380px;
+  padding: 8px;
+}
+
+/* A 12-column grid: brand (4 cols), site links (2 cols), portfolio links (2 cols). */
+.columns {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  column-gap: 20px;
+  width: 100%;
+  max-width: 1380px;
+  padding: 8px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-width: 0;
+  padding: 8px;
+}
+
+.brandColumn {
+  width: calc((100% - 60px) / 3);
+}
+
+.linkColumn {
+  width: calc((100% - 60px) / 6);
+}
+
+.brand {
+  margin-bottom: 12px;
+}
+
+.copyright {
+  width: 100%;
+}
+
+.link {
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 0 7px;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: rgb(83, 83, 83);
+}
+
+.portfolioLink {
+  max-width: 556px;
+}
+
+@media (max-width: 1400px) {
+  .footer {
+    padding: 40px;
+  }
+
+  .brandColumn,
+  .linkColumn {
+    width: 100%;
+  }
+}

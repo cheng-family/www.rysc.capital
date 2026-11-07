@@ -1,0 +1,85 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 16px 64px;
+  background: var(--color-header-bg);
+}
+
+.inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 64px;
+  width: 100%;
+}
+
+.brand {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  max-width: 100%;
+}
+
+.logo {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  object-position: left 50%;
+}
+
+.brandName {
+  max-width: 800px;
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--color-heading);
+}
+
+/* Nav links share the available width equally (like the original design). */
+.nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 32px;
+}
+
+.navLink {
+  flex: 1 1 100%;
+  min-width: 0;
+}
+
+@media (max-width: 1400px) {
+  .header {
+    padding: 32px;
+  }
+
+  .inner {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .brandName {
+    font-size: 32px;
+  }
+
+  .nav {
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .navLink {
+    flex: none;
+    width: calc(100% + 32px);
+    max-width: none;
+  }
+}

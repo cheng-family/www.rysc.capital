@@ -1,0 +1,125 @@
+/*
+ * Global design tokens and base element styles for rysc.capital.
+ *
+ * Breakpoint: the site uses a single responsive breakpoint at 1400px
+ * (`@media (max-width: 1400px)`), below which layouts stack vertically.
+ */
+
+:root {
+  /* Brand colors */
+  --color-heading: #292d2f;
+  --color-white: #ffffff;
+  --color-text: #535353;
+  --color-link: #3291ff;
+  --color-header-bg: #f2f2f8;
+
+  /* Palette */
+  --grey-01: #f4f4f6;
+  --grey-04: #d2d4da;
+  --grey-16: #535865;
+  --grey-20: #2e3138;
+  --blue-08: #5cd1ff;
+  --blue-20: #004966;
+  --orange-04: #fac5b2;
+  --orange-08: #f58c66;
+  --orange-20: #601e06;
+  --green-04: #adffeb;
+  --green-08: #5cffd6;
+  --green-20: #00664d;
+
+  /* Layout */
+  --max-width: 1400px;
+
+  /* Typography (font variables are provided by next/font in app/layout.tsx) */
+  --font-sans: var(--font-inter), "Inter", sans-serif;
+  --font-serif: var(--font-playfair), "Playfair Display", serif;
+  --font-display: var(--font-chakra), "Chakra Petch", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-white);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.7;
+  letter-spacing: normal;
+  color: var(--color-text);
+  text-align: left;
+  white-space: pre-wrap;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure {
+  margin: 0;
+}
+
+h1 {
+  font-family: var(--font-serif);
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0;
+  color: var(--color-white);
+  text-align: center;
+}
+
+h2 {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  color: #000000;
+}
+
+h3 {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0;
+  color: #000000;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+img,
+svg {
+  display: block;
+}
+
+button {
+  font: inherit;
+}
+
+/* Page shell: header, page content and footer stacked in a centered column. */
+.site-shell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
