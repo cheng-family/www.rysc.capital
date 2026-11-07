@@ -1,0 +1,211 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 600px;
+}
+
+/* Hero */
+.hero {
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80vh;
+  padding: 8px;
+  background:
+    linear-gradient(rgba(34, 34, 34, 0.19), rgba(34, 34, 34, 0.19)),
+    url("/images/city-skyline.jpg") left 0% top 25% / cover no-repeat scroll;
+}
+
+.heroInner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  max-width: 1380px;
+  padding: 180px 50px;
+}
+
+.heroCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  max-width: 746px;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.42);
+  box-shadow: rgba(0, 0, 0, 0.2) 0 4px 16px;
+}
+
+.heroTitle {
+  text-align: left;
+}
+
+/* Intro */
+.intro {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+  padding: 50px 8px;
+}
+
+.introInner {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 8px;
+}
+
+.introTitle {
+  width: 100%;
+  max-width: 800px;
+}
+
+.introActions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: flex-start;
+}
+
+.desktopOnly {
+  display: block;
+}
+
+.mobileOnly {
+  display: none;
+}
+
+/* Focus areas */
+.focusAreas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 125px 8px;
+}
+
+.focusAreasGrid {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 30px;
+  width: 100%;
+  max-width: 1380px;
+}
+
+.focusCard {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
+  padding: 30px;
+}
+
+.startups {
+  background:
+    linear-gradient(rgba(13, 75, 109, 0.92), rgba(13, 75, 109, 0.92)),
+    url("/images/startups.jpg") left 50% top 50% / cover repeat;
+}
+
+.crypto {
+  background:
+    linear-gradient(rgba(49, 79, 86, 0.88), rgba(49, 79, 86, 0.88)),
+    url("/images/crypto.jpg") left 50% top 50% / cover repeat;
+}
+
+.realEstate {
+  background:
+    linear-gradient(rgba(20, 22, 22, 0.93), rgba(20, 22, 22, 0.93)),
+    url("/images/real-estate.jpg") left 50% top 50% / cover repeat;
+}
+
+.focusCardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 400px;
+  padding: 8px;
+}
+
+.focusCardTitle {
+  color: var(--color-white);
+}
+
+.divider {
+  flex-shrink: 0;
+  width: 50px;
+  height: 0;
+  border-top: 2px solid var(--color-white);
+}
+
+.focusCardText {
+  width: 100%;
+  max-width: 800px;
+  color: var(--color-white);
+}
+
+/* Skyline photo */
+.skyline {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.skylineImage {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 588px;
+  object-fit: cover;
+  object-position: 50% bottom;
+}
+
+@media (max-width: 1400px) {
+  .heroInner {
+    padding-top: 60px;
+    padding-bottom: 61px;
+  }
+
+  .heroTitle {
+    font-size: 32px;
+  }
+
+  .desktopOnly {
+    display: none;
+  }
+
+  .mobileOnly {
+    display: block;
+  }
+
+  .focusAreasGrid {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .focusCard {
+    flex: none;
+    width: 100%;
+  }
+}
