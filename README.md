@@ -23,8 +23,6 @@ app/
   page.tsx              Home
   about/                About
   portfolio/            Portfolio (startups + crypto on one page)
-  team/                 Team (not linked from the nav)
-  join/, portfolio/*/   Redirects from old URLs to their new locations
 components/             Shared UI components (each with a CSS module)
 lib/                    Config (contact forms, analytics) and portfolio data
 public/images/          Site imagery and portfolio logos
