@@ -1,28 +1,37 @@
 import Link from "next/link";
 import styles from "./Button.module.css";
+import { ArrowRight, ArrowUpRight } from "./icons";
 
-type ButtonVariant = "nav" | "dark" | "pill";
+type ButtonVariant = "accent" | "light" | "outline-light";
 
 type ButtonProps = {
   href: string;
   variant: ButtonVariant;
   children: React.ReactNode;
-  className?: string;
+  /** Outbound links use a diagonal arrow; internal links a right arrow. */
+  external?: boolean;
 };
 
-/** A link styled as a button. */
+/** A square, uppercase monospace link styled as a button, with an arrow. */
 export default function Button({
   href,
   variant,
   children,
-  className,
+  external = false,
 }: ButtonProps) {
-  const classes = [styles.button, styles[variant], className]
-    .filter(Boolean)
-    .join(" ");
+  const className = `${styles.button} ${styles[variant]}`;
+  if (external) {
+    return (
+      <a href={href} className={className}>
+        {children}
+        <ArrowUpRight />
+      </a>
+    );
+  }
   return (
-    <Link href={href} className={classes}>
-      <span className={styles.label}>{children}</span>
+    <Link href={href} className={className}>
+      {children}
+      <ArrowRight />
     </Link>
   );
 }

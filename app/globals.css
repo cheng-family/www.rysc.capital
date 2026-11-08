@@ -1,39 +1,47 @@
 /*
  * Global design tokens and base element styles for rysc.capital.
  *
- * Breakpoint: the site uses a single responsive breakpoint at 1400px
- * (`@media (max-width: 1400px)`), below which layouts stack vertically.
+ * Type: Instrument Serif for display, Inter for body copy and JetBrains Mono
+ * for labels, navigation and buttons. Layouts are built from flex-wrap rows,
+ * so they stack naturally on narrow screens.
  */
 
 :root {
-  /* Brand colors */
-  --color-heading: #292d2f;
-  --color-white: #ffffff;
-  --color-text: #535353;
-  --color-link: #3291ff;
-  --color-header-bg: #f2f2f8;
+  /* Neutrals */
+  --color-bg: #ffffff;
+  --color-ink: #0e0e12;
+  --color-body: #3e3e46;
+  --color-muted: #6a6a72;
+  --color-faint: #5a5a55;
+  --color-rule: #e4e3dd;
+  --color-tile: #f6f5f1;
+  --color-logo-bg: #f2f2f8;
 
-  /* Palette */
-  --grey-01: #f4f4f6;
-  --grey-04: #d2d4da;
-  --grey-16: #535865;
-  --grey-20: #2e3138;
-  --blue-08: #5cd1ff;
-  --blue-20: #004966;
-  --orange-04: #fac5b2;
-  --orange-08: #f58c66;
-  --orange-20: #601e06;
-  --green-04: #adffeb;
-  --green-08: #5cffd6;
-  --green-20: #00664d;
+  /* Brand accent */
+  --color-accent: #4f46e5;
+  --color-accent-hover: #3730a3;
+  --color-accent-soft: #e4e3ff;
+
+  /* Focus area colors */
+  --color-startups: #c2410c;
+  --color-crypto: #0369a1;
+  --color-real-estate: #047857;
 
   /* Layout */
-  --max-width: 1400px;
+  --max-width: 1440px;
+  --gutter: 40px;
 
   /* Typography (font variables are provided by next/font in app/layout.tsx) */
   --font-sans: var(--font-inter), "Inter", sans-serif;
-  --font-serif: var(--font-playfair), "Playfair Display", serif;
-  --font-display: var(--font-chakra), "Chakra Petch", sans-serif;
+  --font-serif: var(--font-instrument-serif), "Instrument Serif", Georgia, serif;
+  --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", ui-monospace,
+    monospace;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --gutter: 20px;
+  }
 }
 
 *,
@@ -48,17 +56,17 @@ body {
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--color-white);
+  background: var(--color-bg);
   font-family: var(--font-sans);
   font-size: 16px;
-  font-weight: 400;
-  font-style: normal;
-  line-height: 1.7;
-  letter-spacing: normal;
-  color: var(--color-text);
-  text-align: left;
-  white-space: pre-wrap;
+  line-height: 1.6;
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
 }
 
 h1,
@@ -72,37 +80,27 @@ figure {
   margin: 0;
 }
 
-h1 {
-  font-family: var(--font-serif);
-  font-size: 50px;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: 0;
-  color: var(--color-white);
-  text-align: center;
-}
-
-h2 {
-  font-family: var(--font-serif);
-  font-size: 36px;
-  font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -1px;
-  color: #000000;
-}
-
+h1,
+h2,
 h3 {
   font-family: var(--font-serif);
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: 0;
-  color: #000000;
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
 }
 
 a {
-  color: var(--color-link);
-  text-decoration: none;
+  color: var(--color-accent);
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+em {
+  font-family: var(--font-serif);
+  font-size: 1.15em;
+  color: var(--color-ink);
 }
 
 img,
@@ -110,16 +108,48 @@ svg {
   display: block;
 }
 
-button {
-  font: inherit;
-}
-
-/* Page shell: header, page content and footer stacked in a centered column. */
+/* Page shell: header, page content and footer stacked in a column. */
 .site-shell {
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+/* Centered, max-width content column with side gutters. */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+/* Small uppercase monospace label. */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* Full-bleed photo framed by hairline rules. */
+.photo-band {
+  width: 100%;
+  border-top: 1px solid var(--color-rule);
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.photo-band img {
+  width: 100%;
+  object-fit: cover;
+  filter: saturate(1.1);
+}
+
+.photo {
+  object-fit: cover;
+  filter: saturate(1.1);
 }

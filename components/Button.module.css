@@ -1,80 +1,67 @@
 .button {
-  position: relative;
-  display: flex;
-  flex-direction: row;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  max-width: 100%;
-  padding: 12px 40px;
-  border-radius: 0;
-  background: var(--color-white);
-  cursor: pointer;
-  transition-property: background;
-  transition-duration: 0.1s;
+  gap: 14px;
+  padding: 16px 22px;
+  border: 1px solid transparent;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
 }
 
-.button:focus-within {
-  box-shadow: rgb(150, 199, 242) 0 0 0 3px;
-  outline: none;
+.button svg {
+  transition: transform 0.15s ease;
 }
 
-.label {
-  font-weight: 500;
-  color: rgb(27, 27, 24);
+.button:hover svg {
+  transform: translateX(3px);
 }
 
-.button:hover .label {
-  color: var(--color-heading);
+.button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
 }
 
-/* Transparent, compact button used in the site navigation. */
-.nav {
-  padding: 6px 12px;
-  background: rgba(255, 255, 255, 0);
+/* Solid indigo, used on white backgrounds. */
+.accent {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #ffffff;
 }
 
-.nav:hover {
-  background: rgb(233, 233, 230);
+.accent:hover {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  color: #ffffff;
 }
 
-.nav:active {
-  background: rgb(227, 227, 224);
+/* Solid white, used on the indigo call-to-action band. */
+.light {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: var(--color-ink);
 }
 
-/* Solid dark button, e.g. "READ MORE". */
-.dark {
-  background: rgb(113, 112, 105);
+.light:hover {
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent-soft);
+  color: var(--color-ink);
 }
 
-.dark .label {
-  color: var(--color-white);
+/* White outline, used on the indigo call-to-action band. */
+.outline-light {
+  background: transparent;
+  border-color: #ffffff;
+  color: #ffffff;
 }
 
-.dark:hover {
-  background: rgb(127, 126, 119);
-}
-
-.dark:active {
-  background: rgb(161, 160, 154);
-}
-
-/* Light, rounded call-to-action button, e.g. "Get In Touch". */
-.pill {
-  min-width: 100px;
-  padding: 12px 20px;
-  border-radius: 999px;
-  background: rgb(238, 238, 236);
-}
-
-.pill .label {
-  font-size: 18px;
-  color: rgb(112, 111, 108);
-}
-
-.pill:hover {
-  background: rgb(233, 233, 230);
-}
-
-.pill:active {
-  background: rgb(227, 227, 224);
+.outline-light:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
 }

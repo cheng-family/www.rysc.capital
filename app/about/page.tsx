@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import NumberedRow, { RowsEnd } from "@/components/NumberedRow";
 import WorkWithUs from "@/components/WorkWithUs";
+import { CONTACT_FORMS } from "@/lib/config";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -26,7 +27,7 @@ const FAQS: { question: string; answer: React.ReactNode }[] = [
   {
     question: "What are you looking for in founders?",
     answer:
-      "We look for mission-aligned individuals who want to scale positive impact in a massive way. We work with incredible people with founder-mindset --- people who take responsibility for change and find whatever it takes to get there. We believe that the founder-mindset can come from anywhere, from inside an existing organization, to starting a high-growth company. \n\n" +
+      "We look for mission-aligned individuals who want to scale positive impact in a massive way. We work with incredible people with founder-mindset --- people who take responsibility for change and find whatever it takes to get there. We believe that the founder-mindset can come from anywhere, from inside an existing organization, to starting a high-growth company.\n\n" +
       "Long-term change requires passionate and determined persistence towards a goal, as well as smart, creative, and rapid iteration with a learning mindset. That means people who get back up after falling, and know how to lead a team to success.",
   },
   {
@@ -34,8 +35,9 @@ const FAQS: { question: string; answer: React.ReactNode }[] = [
     answer: (
       <>
         The best way is to reach out on our contact form{" "}
-        <Link href="/join/">here</Link>. You can also find us at conferences or
-        get an intro from someone in our network (e.g. LinkedIn / Twitter).
+        <a href={CONTACT_FORMS.investment}>here</a>. You can also find us at
+        conferences or get an intro from someone in our network (e.g. LinkedIn
+        / Twitter).
       </>
     ),
   },
@@ -44,61 +46,67 @@ const FAQS: { question: string; answer: React.ReactNode }[] = [
 export default function AboutPage() {
   return (
     <main className={styles.main}>
-      <section className={styles.hero}>
-        <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle}>rysc.capital</h1>
-          <p className={styles.heroSubtitle}>A mission-oriented fund</p>
+      <section className={`container ${styles.hero}`}>
+        <h1 className={styles.heroTitle}>
+          rysc.capital<span className={styles.dot}>.</span>
+        </h1>
+        <p className={`eyebrow ${styles.heroSubtitle}`}>
+          A mission-oriented fund
+        </p>
+      </section>
+
+      <div className="photo-band">
+        <img className={styles.heroImage} src="/images/dome.jpg" alt="" />
+      </div>
+
+      <section className={`container ${styles.intro}`}>
+        <img
+          className={`photo ${styles.art}`}
+          src="/images/about-art.jpg"
+          alt="Abstract artwork"
+          loading="lazy"
+        />
+        <div className={styles.introContent}>
+          <h2 className={styles.introTitle}>
+            We back disruptive companies that build better spaces (both meat
+            and cyber) for everyday people.
+          </h2>
+          <div className={styles.text}>
+            {"Technology has turbocharged a small team's ability to scale their impact, for both good and bad. This has led to incredible advancements for users, such as instant access to knowledge and near-instant purchases direct to your door. However, it has also led to an unprecedented imbalance in power, where a relatively small group of people can effectively dictate the rules of how society operates. It can easily be used to curtail speech, thwart social organizing, surveil activity, and influence behavior.\n\n"}
+            {"If we were to apply John Rawls' "}
+            <a href="https://en.wikipedia.org/wiki/A_Theory_of_Justice">
+              veil of ignorance
+            </a>
+            {", would we be happy with what we've built?\nImagine that "}
+            <em>
+              &quot;no one knows his place in society, his class position or
+              social status, nor does anyone know his fortune in the
+              distribution of natural assets and abilities, his intelligence,
+              strength, and the like... The principles of justice are chosen
+              behind a veil of ignorance.&quot;
+            </em>
+            {"\nWhat are "}
+            <em>
+              &quot;the principles that rational and free persons concerned to
+              further their own interests would accept in an initial position
+              of equality...?&quot;
+            </em>
+            {"\n\nStartups, engineers, researchers --- we are quite literally building what society will look like in the future. We do not have to build systems that harm or manipulate others. We can build technology that respects the desires, rights, and freedoms of the user. And we can make money doing so. Nothing is inevitable. Let's build a better future together."}
+          </div>
         </div>
       </section>
 
-      <section className={styles.body}>
-        <article className={styles.card}>
-          <div className={styles.intro}>
-            <h2 className={styles.introTitle}>
-              We back disruptive companies that build better spaces (both meat
-              and cyber) for everyday people.
-            </h2>
-            <div className={styles.introText}>
-              {"Technology has turbocharged a small team's ability to scale their impact, for both good and bad. This has led to incredible advancements for users, such as instant access to knowledge and near-instant purchases direct to your door. However, it has also led to an unprecedented imbalance in power, where a relatively small group of people can effectively dictate the rules of how society operates. It can easily be used to curtail speech, thwart social organizing, surveil activity, and influence behavior.\n\n"}
-              {"If we were to apply John Rawls' "}
-              <a href="https://en.wikipedia.org/wiki/A_Theory_of_Justice">
-                veil of ignorance
-              </a>
-              {", would we be happy with what we've built?\nImagine that "}
-              <em>
-                &quot;no one knows his place in society, his class position or
-                social status, nor does anyone know his fortune in the
-                distribution of natural assets and abilities, his intelligence,
-                strength, and the like... The principles of justice are chosen
-                behind a veil of ignorance.&quot;
-              </em>
-              {"\nWhat are "}
-              <em>
-                &quot;the principles that rational and free persons concerned
-                to further their own interests would accept in an initial
-                position of equality...?&quot;
-              </em>
-              {"\n\nStartups, engineers, researchers --- we are quite literally building what society will look like in the future. We do not have to build systems that harm or manipulate others. We can build technology that respects the desires, rights, and freedoms of the user. And we can make money doing so. Nothing is inevitable. Let's build a better future together."}
-            </div>
-          </div>
-
-          <img
-            className={styles.art}
-            src="/images/about-art.jpg"
-            alt=""
-            loading="lazy"
-          />
-
-          <div className={styles.faqs}>
-            {FAQS.map(({ question, answer }) => (
-              <div key={question} className={styles.faq}>
-                <h3 className={styles.question}>{question}</h3>
-                <div className={styles.rule} />
-                <div className={styles.answer}>{answer}</div>
-              </div>
-            ))}
-          </div>
-        </article>
+      <section className={`container ${styles.faqs}`}>
+        {FAQS.map(({ question, answer }, i) => (
+          <NumberedRow
+            key={question}
+            index={i + 1}
+            title={<h3 className={styles.question}>{question}</h3>}
+          >
+            <div className={styles.text}>{answer}</div>
+          </NumberedRow>
+        ))}
+        <RowsEnd />
       </section>
 
       <WorkWithUs />
