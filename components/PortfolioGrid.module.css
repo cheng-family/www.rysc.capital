@@ -1,64 +1,122 @@
 .grid {
-  display: flex;
-  flex: 1 0 auto;
-  flex-flow: row wrap;
-  align-items: center;
-  align-content: flex-start;
-  justify-content: center;
-  gap: 32px;
-  width: 100%;
-  padding: 32px;
+  --tile-color: var(--color-accent);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
 }
 
-.card {
+.tile {
   position: relative;
-  display: flex;
-  flex-shrink: 0;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 240px;
-  max-width: 100%;
-  height: 240px;
   overflow: hidden;
-  border-radius: 20px;
-  background: var(--grey-01);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-tile);
+  border: 1px solid var(--color-rule);
+  border-top: 4px solid var(--tile-color);
+  text-decoration: none;
+  color: #3a3a36;
+}
+
+.tile:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.number {
+  position: absolute;
+  top: 20px;
+  left: 22px;
+  color: #55554f;
+}
+
+.arrow {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: flex;
 }
 
 .logo {
-  width: 50%;
-  max-width: 100%;
-  object-fit: cover;
+  width: 45%;
+  max-width: 150px;
+  max-height: 45%;
+  object-fit: contain;
+}
+
+.wide {
+  width: 62%;
+  max-width: 190px;
+}
+
+.multiply {
+  mix-blend-mode: multiply;
+}
+
+.name {
+  position: absolute;
+  bottom: 20px;
+  left: 22px;
+  color: #2a2a27;
 }
 
 .overlay {
   position: absolute;
   inset: 0;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 16px;
-  background: var(--grey-04);
-}
-
-.card:hover .overlay {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 22px 22px;
+  background: var(--tile-color);
+  color: #ffffff;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
-.name,
-.description {
-  max-width: 800px;
-  text-align: center;
+.tile:hover .overlay,
+.tile:focus-visible .overlay {
+  opacity: 1;
+  transform: none;
 }
 
-.name {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--grey-20);
+@media (hover: none) {
+  .overlay {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-.description {
-  color: var(--grey-16);
+.overlayTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.overlayTop svg {
+  color: #ffffff;
+}
+
+.overlayText {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.overlayName {
+  font-family: var(--font-serif);
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.overlayDescription {
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
 }

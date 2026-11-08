@@ -19,23 +19,23 @@ Copy `.env.local.example` to `.env.local` and set `NEXT_PUBLIC_GOOGLE_ANALYTICS_
 ```
 app/
   layout.tsx            Root layout: fonts, metadata, analytics, header + footer
-  globals.css           Design tokens and base element styles
+  globals.css           Design tokens and shared utility classes
   page.tsx              Home
   about/                About
-  team/                 Team
-  join/                 Join
-  portfolio/            Portfolio index and category pages
+  portfolio/            Portfolio (startups + crypto on one page)
 components/             Shared UI components (each with a CSS module)
+lib/                    Config (contact forms, analytics) and portfolio data
 public/images/          Site imagery and portfolio logos
 ```
 
-Styling uses CSS Modules. The layout has a single responsive breakpoint at
-`max-width: 1400px`, below which the header, footer and content sections stack
-vertically.
+Styling uses CSS Modules plus a few global utilities (`.container`,
+`.eyebrow`, `.photo-band`). Type is Instrument Serif (display), Inter (body)
+and JetBrains Mono (labels). Layouts use wrapping flex rows, so they stack on
+narrow screens.
 
 ### Editing content
 
-- Portfolio companies live in `app/portfolio/startups/page.tsx` and
-  `app/portfolio/crypto/page.tsx` as plain arrays.
+- Portfolio companies live in `lib/portfolio.ts` as plain arrays.
+- Contact form links live in `lib/config.ts`.
 - Navigation links live in `components/SiteHeader.tsx` and
   `components/SiteFooter.tsx`.

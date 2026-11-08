@@ -1,33 +1,47 @@
+"use client";
+
 import Link from "next/link";
-import Button from "./Button";
+import { usePathname } from "next/navigation";
 import styles from "./SiteHeader.module.css";
 
-const NAV_LINKS = [
+export const NAV_LINKS = [
   { href: "/about/", label: "About" },
   { href: "/portfolio/", label: "Portfolio" },
-  { href: "/team/", label: "Team" },
-  { href: "/join/", label: "Join" },
 ];
 
 export default function SiteHeader() {
+  const pathname = usePathname();
+
   return (
     <header className={styles.header}>
-      <div className={styles.inner}>
+      <div className={`container ${styles.inner}`}>
         <Link href="/" className={styles.brand}>
-          <img className={styles.logo} src="/images/logo.png" alt="" />
+          <span className={styles.logoWrap}>
+            <img
+              className={styles.logo}
+              src="/images/logo.png"
+              alt="rysc.capital logo"
+            />
+          </span>
           <span className={styles.brandName}>rysc.capital</span>
         </Link>
-        <nav className={styles.nav}>
-          {NAV_LINKS.map(({ href, label }) => (
-            <Button
-              key={href}
-              href={href}
-              variant="nav"
-              className={styles.navLink}
-            >
-              {label}
-            </Button>
-          ))}
+        <nav aria-label="Main" className={styles.nav}>
+          {NAV_LINKS.map(({ href, label }, i) => {
+            const active = pathname?.startsWith(href);
+            return (
+              <Link
+                key={href}
+                href={href}
+                className={`${styles.navLink} ${active ? styles.active : ""}`}
+                aria-current={active ? "page" : undefined}
+              >
+                <span aria-hidden="true" className={styles.navNumber}>
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                {label}
+              </Link>
+            );
+          })}
         </nav>
       </div>
     </header>

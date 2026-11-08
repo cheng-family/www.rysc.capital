@@ -1,22 +1,26 @@
+import { CONTACT_FORMS } from "@/lib/config";
 import Button from "./Button";
 import styles from "./WorkWithUs.module.css";
 
-/** Dark call-to-action banner inviting visitors to get in touch. */
+/** Indigo call-to-action band linking to the contact forms. */
 export default function WorkWithUs() {
   return (
-    <section className={styles.section}>
-      <div className={styles.content}>
-        <div className={styles.text}>
-          <h2 className={styles.title}>Work with us.</h2>
+    <section id="work-with-us" className={styles.section}>
+      <div className={`container ${styles.inner}`}>
+        <h2 className={styles.title}>Work with us.</h2>
+        <div className={styles.row}>
           <p className={styles.subtitle}>
             Whether you&apos;re looking for investment, or looking to join an
             existing effort, come join some of the best teams in the industry
           </p>
-        </div>
-        <div className={styles.actions}>
-          <Button href="/join/" variant="pill">
-            Get In Touch
-          </Button>
+          <div className={styles.actions}>
+            <Button href={CONTACT_FORMS.investment} variant="light" external>
+              For investment inquiries
+            </Button>
+            <Button href={CONTACT_FORMS.jobs} variant="outline-light" external>
+              For job opportunities
+            </Button>
+          </div>
         </div>
       </div>
     </section>

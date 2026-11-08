@@ -1,143 +1,102 @@
 .main {
   display: flex;
+  flex: 1 0 auto;
   flex-direction: column;
-  align-items: flex-start;
   width: 100%;
-  max-width: var(--max-width);
-  min-height: 600px;
 }
 
 /* Hero */
 .hero {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  padding: 177px 32px 179px;
-  background:
-    linear-gradient(rgba(34, 34, 34, 0.6), rgba(34, 34, 34, 0.6)),
-    url("/images/dome.jpg") right 0px top 0% / cover no-repeat fixed;
+  gap: 28px;
+  padding-top: 120px;
+  padding-bottom: 72px;
 }
 
-.heroContent {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  align-self: center;
-  width: 100%;
-  max-width: 1080px;
+.heroTitle {
+  font-size: clamp(4.5rem, 14vw, 13rem);
+  color: var(--color-ink);
+}
+
+.dot {
+  color: var(--color-accent);
 }
 
 .heroSubtitle {
-  color: var(--color-white);
-  text-align: center;
+  color: var(--color-accent);
 }
 
-/* Body */
-.body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  padding: 0 64px 68px;
-  background: rgb(238, 238, 238);
+.heroImage {
+  height: 520px;
+  object-position: center;
 }
 
-.card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 64px;
-  align-self: center;
-  width: 100%;
-  max-width: 1380px;
-  padding: 63px 24px 24px;
-  border-radius: 16px;
-}
-
+/* Intro */
 .intro {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 100%;
-}
-
-.introTitle {
-  width: 100%;
-  max-width: 800px;
-  margin-bottom: 18px;
-  font-size: 32px;
-}
-
-.introText {
-  align-self: flex-start;
-  width: 100%;
-}
-
-.introText em {
-  font-style: italic;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 64px 80px;
+  padding-top: 120px;
+  padding-bottom: 120px;
 }
 
 .art {
-  width: 1024px;
-  max-width: 100%;
-  height: 400px;
-  object-fit: cover;
+  flex: 1 1 100%;
+  width: 100%;
+  aspect-ratio: 2 / 1;
 }
 
+.introContent {
+  display: flex;
+  flex: 1 1 520px;
+  flex-direction: column;
+  gap: 40px;
+  min-width: 0;
+}
+
+.introTitle {
+  font-size: clamp(2.5rem, 4.4vw, 4rem);
+  line-height: 1.02;
+  color: var(--color-ink);
+}
+
+.text {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--color-body);
+  white-space: pre-line;
+}
+
+/* FAQs */
 .faqs {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  width: 100%;
-}
-
-.faq {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
+  padding-bottom: 120px;
 }
 
 .question {
-  align-self: flex-start;
-  max-width: 800px;
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  line-height: 1.05;
+  color: var(--color-ink);
 }
 
-.answer {
-  width: 100%;
-  max-width: 800px;
-}
-
-.rule {
-  flex-shrink: 0;
-  width: 40px;
-  height: 3px;
-  border-top: 3px solid var(--color-heading);
-}
-
-@media (max-width: 1400px) {
+@media (max-width: 640px) {
   .hero {
-    padding-top: 61px;
-    padding-bottom: 61px;
+    padding-top: 80px;
+    padding-bottom: 48px;
   }
 
-  .heroTitle {
-    font-size: 40px;
+  .heroImage {
+    height: 320px;
   }
 
-  .heroSubtitle {
-    font-size: 18px;
+  .intro {
+    padding-top: 72px;
+    padding-bottom: 72px;
+    gap: 40px;
   }
 
-  .body {
-    padding: 10px 32px 28px;
-  }
-
-  .art {
-    width: 400px;
-    height: auto;
-    aspect-ratio: 1 / 1;
+  .introContent {
+    flex-basis: 100%;
   }
 }
